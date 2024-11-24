@@ -14,3 +14,14 @@ def pregunta_01():
     214
 
     """
+    import csv
+    suma= 0
+
+    with open(r"files\input\data.csv") as file:
+        csv_reader = csv.reader(file, delimiter='\t')
+
+        for row in csv_reader:
+            suma+=int(row[1])
+    return suma
+
+            

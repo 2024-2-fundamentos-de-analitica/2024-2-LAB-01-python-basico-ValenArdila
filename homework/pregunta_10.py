@@ -20,3 +20,22 @@ def pregunta_10():
 
 
     """
+    
+    import csv
+    tuplas = []
+    with open(r"files\input\data.csv") as file:
+        csv_reader = csv.reader(file, delimiter='\t')
+            
+        for row in csv_reader:
+            col_4 = len(row[3].split(','))
+            col_5 = len(row[4].strip().split(','))
+            tuplas.append((row[0], col_4, col_5))
+            
+        
+
+    return tuplas
+
+
+
+    
+        

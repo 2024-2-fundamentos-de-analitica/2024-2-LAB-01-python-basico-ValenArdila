@@ -25,3 +25,26 @@ def pregunta_07():
      (9, ['A', 'B', 'E', 'A', 'A', 'C'])]
 
     """
+    import csv
+    lista = []
+    dic = {}
+    resultado_final = []
+    with open(r"files\input\data.csv") as file:
+        csv_reader = csv.reader(file, delimiter='\t')
+            
+        for row in csv_reader:
+            lista.append((row[0],int(row[1])))
+        
+        lista = sorted(lista, key = lambda x: x[1])
+        
+        for value, key in lista:
+            if key not in dic:
+                dic[key] = []
+            dic[key].append(value)
+        
+        for clave, valor in dic.items():
+            resultado_final.append((clave, valor))
+        
+    return resultado_final
+
+

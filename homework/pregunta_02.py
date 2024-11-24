@@ -15,3 +15,25 @@ def pregunta_02():
     [('A', 8), ('B', 7), ('C', 5), ('D', 6), ('E', 14)]
 
     """
+    import csv
+    resultado = []
+    dic = {}
+
+    with open(r"files\input\data.csv") as file:
+        csv_reader = csv.reader(file, delimiter='\t')
+
+        for row in csv_reader:
+            resultado.append((row[0], 1))
+            
+        resultado = sorted(resultado, key = lambda x: x[0])
+        
+        for key, value in resultado: 
+            if key not in dic.keys():
+                dic[key] = 0
+            dic[key] += value
+            
+        result = list(dic.items())
+
+    return result
+
+    

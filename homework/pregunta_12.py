@@ -15,3 +15,40 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+    
+    import csv
+    lista = []
+    col_1 = []
+    dicc = {}
+                
+
+    with open(r"files\input\data.csv") as file:
+        csv_reader = csv.reader(file, delimiter='\t')
+            
+        for row in csv_reader:
+            col_1.append(row[0])
+            aux = row[4].strip().replace(',', ':').split(':')
+            suma = 0
+            for i in range(len(aux)):
+                if i%2 != 0:
+                    suma+= int(aux[i])
+            lista.append(suma)
+            
+            
+        for letra, sum in zip(col_1, lista):
+            if letra not in dicc.keys():
+                dicc[letra] = 0
+            dicc[letra] += sum
+        
+        keys = dicc.keys()
+        
+        result = dict(sorted(dicc.items()))
+        
+            
+    return result
+
+
+        
+    
+    
+        

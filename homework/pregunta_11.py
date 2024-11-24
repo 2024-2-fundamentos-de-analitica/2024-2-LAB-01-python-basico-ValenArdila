@@ -16,3 +16,23 @@ def pregunta_11():
 
 
     """
+    
+    import csv
+    col_2 = []
+    col_4 = []
+    with open(r"files\input\data.csv") as file:
+        csv_reader = csv.reader(file, delimiter='\t')
+        
+        letras = ('a', 'b', 'c', 'd', 'e', 'f', 'g') 
+        dicc = {}
+        for letra in letras:
+            dicc[letra] = 0
+            
+        for row in csv_reader:
+            col_2.append(row[1])
+            col_4.append(row[3])
+    
+        for num, letras in zip(col_2, col_4):
+            for letra in letras.split(','):
+                dicc[letra] += int(num)
+    return dicc

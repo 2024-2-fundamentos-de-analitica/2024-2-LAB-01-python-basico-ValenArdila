@@ -26,3 +26,37 @@ def pregunta_04():
      ('12', 3)]
 
     """
+    import csv
+    fechas = []
+    mes = []
+    resultado = {}
+    resultado_final = []
+    with open(r"files\input\data.csv") as file:
+        csv_reader = csv.reader(file, delimiter='\t')
+            
+        for row in csv_reader:
+            fechas.append(row[2].split('-'))
+            
+        for fecha in fechas:
+            mes.append((fecha[1], 1))
+        
+        mes = sorted(mes, key = lambda x: x[0])
+        
+        for key, value in mes:
+            if key not in resultado.keys():
+                resultado[key] = 0
+            resultado[key] += value
+            
+        for clave, valor in resultado.items():
+            resultado_final.append((clave, valor))
+    
+            
+    return resultado_final
+
+
+
+
+
+        
+    
+        
