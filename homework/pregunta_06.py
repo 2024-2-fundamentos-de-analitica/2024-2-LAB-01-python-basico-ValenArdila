@@ -26,37 +26,38 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
-    import csv
+
     lista =[]
     resultado = {}
     resultado_final = []
-    with open(r"files\input\data.csv") as file:
-        csv_reader = csv.reader(file, delimiter='\t')
+    with open("files/input/data.csv", "r") as file:
+        data = file.readlines()
+    
+    for row in data:
+        row = row.strip().split('\t')
+        aux = row[4].strip().split(',')
+        for data in aux:
+            lista.append(tuple(data.split(':')))
+    
+    for key, value in lista:
+        value = int(value)
+        if key not in resultado:
+            resultado[key] = [value, value]
+        if value < resultado[key][0]:
+            resultado[key][0] = value
+        if value > resultado[key][1]:
+            resultado[key][1] = value
             
-        for row in csv_reader:
-            aux = row[4].strip().split(',')
-            for data in aux:
-                lista.append(tuple(data.split(':')))
-        
-        for key, value in lista:
-            value = int(value)
-            if key not in resultado:
-                resultado[key] = [value, value]
-            if value < resultado[key][0]:
-                resultado[key][0] = value
-            if value > resultado[key][1]:
-                resultado[key][1] = value
-                
-        resultado = sorted(resultado.items())
-        
-        for clave, valor in resultado:
-            resultado_final.append((clave,valor[0], valor[1]))
-        
+    resultado = sorted(resultado.items())
+    
+    for clave, valor in resultado:
+        resultado_final.append((clave,valor[0], valor[1]))
+    
 
     return resultado_final
 
 
-
+#print(pregunta_06())
 
 
 

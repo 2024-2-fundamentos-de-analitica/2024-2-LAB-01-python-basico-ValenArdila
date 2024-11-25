@@ -21,21 +21,22 @@ def pregunta_10():
 
     """
     
-    import csv
+    
     tuplas = []
-    with open(r"files\input\data.csv") as file:
-        csv_reader = csv.reader(file, delimiter='\t')
-            
-        for row in csv_reader:
-            col_4 = len(row[3].split(','))
-            col_5 = len(row[4].strip().split(','))
-            tuplas.append((row[0], col_4, col_5))
+    with open("files/input/data.csv", "r") as file:
+        data = file.readlines()
+
+    for row in data:
+        row = row.strip().split('\t')
+        col_4 = len(row[3].split(','))
+        col_5 = len(row[4].strip().split(','))
+        tuplas.append((row[0], col_4, col_5))
             
         
 
     return tuplas
 
-
+#print(pregunta_10())
 
     
         
